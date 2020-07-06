@@ -9,7 +9,20 @@ const NewsletterForm = () => {
     // 3. Upon onClick event, alert the contents of the input field
 
     const registerEmail = () => {
-        console.log(inputField.value)
+        //console.log(inputField.value)
+        fetch('http://localhost:8080/emails/register', 
+            {
+                method: 'POST',
+                body: JSON.stringify({email: inputField.value}),
+                headers: {"Content-Type": "application/json"}
+            }
+        )
+        .then(
+            (result) => result.json()
+        )
+        .then (
+            (json) => console.log('response from backend', json)
+        )
     }
 
     return (
