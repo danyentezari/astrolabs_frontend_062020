@@ -9,12 +9,14 @@ const CounterButton = () => {
     );
 
     const countUp = () => {
+
        // Create a new variable for the new state
        let newLabel = state.label + 1;
 
        // Update the state using setState
        setState(
            {
+               ...state,
                label: newLabel
            }
        )
