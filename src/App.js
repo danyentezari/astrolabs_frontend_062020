@@ -36,6 +36,8 @@ const App = () => {
           <NewsletterForm />
         </Jumbotron>
 
+        <ColorButton></ColorButton>
+
         <Jumbotron 
           title="Featured Products" 
           description="Check out these latest trendy items"
