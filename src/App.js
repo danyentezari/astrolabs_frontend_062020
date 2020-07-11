@@ -8,10 +8,10 @@ import './App.css';
 
 const App = () => {
 
-  const [globalState, setGlobalState] = {
+  const [globalState, setGlobalState] = useState({
     loggedIn: false,
     user: null
-  }
+  });
 
   return (
 
