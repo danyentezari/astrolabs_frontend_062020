@@ -8,7 +8,29 @@ const LoginPage = () => {
     let passwordField;
 
     const loginUser = () => {
-        console.log(emailField.value, passwordField.value);
+        fetch('http://localhost:8080/users/login', 
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: emailField.value,
+                    password: passwordField.value
+                }),
+                headers: {"Content-Type": "application/json"}
+            }
+        )
+        .then(
+            (result) => result.json()
+        )
+        .then (
+            (json) => {
+                console.log('response from backend', json);
+                // setState(
+                //     {
+                //         registered: true
+                //     }
+                // )
+            }
+        )
     }
 
     return(
