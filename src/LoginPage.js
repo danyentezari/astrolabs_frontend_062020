@@ -80,7 +80,7 @@ const LoginPage = () => {
                         style={{maxWidth: '400px', margin: '0 auto'}}>
                             <div>
                                 <div className="form-group">
-                                    <label for="exampleInputEmail1">
+                                    <label htmlFor="exampleInputEmail1">
                                         Email address
                                     </label>
 
@@ -93,7 +93,7 @@ const LoginPage = () => {
                                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
+                                    <label htmlFor="exampleInputPassword1">Password</label>
 
                                     <input 
                                     ref={(comp)=> passwordField = comp }
