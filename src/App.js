@@ -9,7 +9,7 @@ import './App.css';
 const App = () => {
 
   const [globalState, setGlobalState] = useState({
-    loggedIn: false,
+    loggedIn: localStorage.getItem('jwt') ? true : false,
     user: null
   });
 
