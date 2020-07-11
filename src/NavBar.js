@@ -7,11 +7,18 @@ import Jumbotron from './Jumbotron';
 
 const NavBar = () => {
 
-    const promptLogin = () => {
-        window.location = "https://www.myapp.com/login"
-    }
-
     const [globalState, setGlobalState] = useContext(AppContext);
+
+    const logOut = () => {
+        setGlobalState(
+            {
+                ...globalState,
+                loggedIn: false
+            }
+        );
+
+        localStorage.clear();
+    }
 
     return (
         <nav className="navbar navbar-dark bg-dark">
@@ -30,6 +37,14 @@ const NavBar = () => {
                     className="btn btn-primary">
                         Log In
                     </Link>
+                }
+
+                {
+                    globalState.loggedIn === true && 
+                    <button onClick={logOut}
+                    className="btn btn-primary">
+                        Log Out
+                    </button>
                 }
             </div>
         </nav>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import AppContext from './AppContext';
 import NavBar from './NavBar.js';
@@ -9,9 +9,21 @@ const LoginPage = () => {
     let emailField;
     let passwordField;
 
+    // Connected to globalState
     const [globalState, setGlobalState] = useContext(AppContext);
 
+    // A local state
+    const [state, setState] = useState(
+        {
+            loading: false
+        }
+    )
+
     const loginUser = () => {
+
+        // Start loading
+        setState({...state, loading: true})
+
         fetch('http://localhost:8080/users/login', 
             {
                 method: 'POST',
@@ -39,6 +51,8 @@ const LoginPage = () => {
 
                     // save the jwt in the browser
                     localStorage.setItem('jwt', jsonwebtoken);
+
+                    setState({...state, loading: false})
                 } else {
                     // throw an error
                     alert(message);
@@ -92,7 +106,9 @@ const LoginPage = () => {
                                 <button 
                                 onClick={loginUser}
                                 type="button"
-                                className="btn btn-primary">Submit</button>
+                                className="btn btn-primary">Login</button>
+
+                                { state.loading && <p>Loading...</p> }
                         </div>
                     </div>
                 </div>
