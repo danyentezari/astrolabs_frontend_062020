@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { validEmail, validPassword } from './utils'; 
 import NavBar from './NavBar.js';
 
 const RegistrationPage = () => {
@@ -24,6 +25,31 @@ const RegistrationPage = () => {
         //     emailField.value,
         //     passwordField.value
         // )
+
+        let errors = 0;
+        let messages = [];
+
+        if(firstNameField.value.length < 1) {
+            errors++;
+            messages.push('Please enter a valid first name')
+        }
+        if(lastNameField.value.length < 1) {
+            errors++;
+            messages.push('Please enter a valid last name')
+        }
+        if(!validEmail(emailField.value)) {
+            errors++;
+            messages.push('Please enter a valid email')
+        }
+        if(!validPassword(passwordField.value)) {
+            errors++;
+            messages.push('Please enter a valid password')
+        }
+
+        if(errors > 0) {
+            alert(messages.join('\n'));
+            return;
+        }
 
         setState(
             { 
@@ -58,7 +84,7 @@ const RegistrationPage = () => {
                         }
                     )
                 } else {
-                    alert("Please check all the fields");
+                    //alert("Please check all the fields");
                     setState(
                         {
                             loading: false
