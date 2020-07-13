@@ -8,7 +8,9 @@ const RegistrationPage = () => {
     const [state, setState] = useState(
         {
             registered: false,
-            loading: false
+            loading: false,
+            errors: 0,
+            messages: []
         }
     );
 
@@ -46,17 +48,28 @@ const RegistrationPage = () => {
             messages.push('Please enter a valid password')
         }
 
+        // If user makes any mistake
         if(errors > 0) {
-            alert(messages.join('\n'));
+            setState(
+                {
+                    ...state,
+                    errors: errors,
+                    messages: messages,
+                }
+            )
             return;
+        } 
+        // If no mistake occurs, reset the errors
+        else {
+            setState(
+                {
+                    ...state,
+                    errors: 0,
+                    messages: [],
+                    loading: true
+                }
+            )
         }
-
-        setState(
-            { 
-                ...state,
-                loading: true
-            }
-        )
 
         fetch('http://localhost:8080/users/register', {
             method: 'POST',
@@ -168,6 +181,7 @@ const RegistrationPage = () => {
                                 type="button"
                                 className="btn btn-primary">Register
                                 </button>
+                                <br/><br/>
 
                                 {
                                  state.loading && 
@@ -176,7 +190,18 @@ const RegistrationPage = () => {
                                         <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
                                     </svg>
                                 </div>
-                                 }
+                                }
+
+                                {
+                                    state.errors > 0 &&
+                                    <div class="alert alert-danger" role="alert">
+                                        {
+                                            state.messages.map(
+                                                (message)=><p>{message}</p>
+                                            )
+                                        }
+                                    </div>
+                                }
                         </div>
                     </div>
                 </div>
