@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AppContext from './AppContext';
 import LandingPage from './LandingPage';
@@ -26,6 +26,16 @@ const App = () => {
     loggedIn: localStorage.getItem('jwt') ? true : false,
     user: null
   });
+
+
+  useEffect(
+    ()=>{
+        // when (and if) globalState.loggedIn changes,
+        // run the below code
+        console.log("This the loggedIn state", globalState.loggedIn)
+    }, 
+    [globalState.loggedIn]
+  )
 
   return (
     <AppContext.Provider value={[globalState, setGlobalState]}>
