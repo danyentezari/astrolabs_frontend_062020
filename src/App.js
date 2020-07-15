@@ -19,6 +19,7 @@ const PrivateRoute = ({ component: Component, ...otherProps }) => {
     }
 }
 
+
 const App = () => {
 
   const [globalState, setGlobalState] = useState({
