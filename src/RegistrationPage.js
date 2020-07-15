@@ -79,7 +79,9 @@ const RegistrationPage = () => {
                 email: emailField.value,
                 password: passwordField.value
             }),
-            headers: {"Content-Type": "application/json"}
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
         .then(
             (response)=>response.json()
